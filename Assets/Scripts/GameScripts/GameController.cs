@@ -6,8 +6,12 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     private int roundCount;
-
+    [SerializeField]
+    GameObject camera3D;
     private void Start() {
-        RoundLogic.rl.startRound(roundCount); //starts round, will have trigger in future
+        camera3D.SetActive(true);
+    }
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.X)) RoundLogic.rl.startRound(roundCount);
     }
 }

@@ -15,11 +15,6 @@ public class GeneralAI : MonoBehaviour
     private void Start() {
         Player = GameObject.FindGameObjectWithTag("Player");
     }
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Hit(temp, 50);
-        }
-    }
     public void Hit(GameObject hitDie, float knockback) { //hit die is the dice that wil be rolled to deal damage
         GameObject die = Instantiate(hitDie, transform.position + Vector3.back + Vector3.back, Quaternion.identity);
         StartCoroutine(HitWait(die, knockback));
