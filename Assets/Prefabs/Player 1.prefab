@@ -274,6 +274,9 @@ MonoBehaviour:
   muzzle: {fileID: 4714528488876380929, guid: 4aa0dc4d66dfac343a262fadb8903579, type: 3}
   FlashPoint: {fileID: 6444589003470852566}
   Gun: {fileID: 6444589003517895596}
+  dice: {fileID: 0}
+  mainCam: {fileID: 0}
+  knockback: 0
   firerate: 100
 --- !u!61 &6444589004242710006
 BoxCollider2D:

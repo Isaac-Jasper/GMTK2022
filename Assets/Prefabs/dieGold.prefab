@@ -512,7 +512,6 @@ GameObject:
   - component: {fileID: 9157565673016419415}
   - component: {fileID: 9157565673016419408}
   - component: {fileID: 9157565673016419409}
-  - component: {fileID: 7181072958135441035}
   m_Layer: 3
   m_Name: dieGold
   m_TagString: Untagged
@@ -527,8 +526,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9157565673016419434}
-  m_LocalRotation: {x: 0.10413749, y: 0.33885545, z: -0.037769202, w: 0.93429434}
-  m_LocalPosition: {x: -0.29, y: 2.7, z: -8.71}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -540,7 +539,7 @@ Transform:
   - {fileID: 9157565672656348341}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 12.72, y: 39.87, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9157565673016419413
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -590,11 +589,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99c46a31ebe32f49a4edfe4ec159ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DN: {fileID: 7181072958135441035}
   rb: {fileID: 9157565673016419415}
-  upForce: 2000
-  torque: 500
+  upForce: 50
+  torque: 10
   direction: 5
+  diceSides:
+  - {fileID: 9157565672743639630}
+  - {fileID: 9157565672612265880}
+  - {fileID: 9157565672656348341}
+  - {fileID: 9157565672602323019}
+  - {fileID: 9157565672176565882}
+  - {fileID: 9157565671505230546}
+  side: 1
+  cg: {fileID: 9157565673016419409}
+  fallGravity: 15
+  maxHeight: 6
 --- !u!114 &9157565673016419409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,23 +617,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityScale: 4
---- !u!114 &7181072958135441035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157565673016419434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 672976de2ff9a7347957c3187fd6f608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  diceSides:
-  - {fileID: 9157565672743639630}
-  - {fileID: 9157565672612265880}
-  - {fileID: 9157565672656348341}
-  - {fileID: 9157565672602323019}
-  - {fileID: 9157565672176565882}
-  - {fileID: 9157565671505230546}
-  side: 1

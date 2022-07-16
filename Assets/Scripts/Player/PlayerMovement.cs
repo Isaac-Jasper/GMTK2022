@@ -12,10 +12,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 50f;
     [SerializeField] float fallMulitplier = 2.5f;
     [SerializeField] float lowJumpMultiplier = 2f;
-
+    
     //Variables that reference other attributes and GameObjects
     [Header("References")]
     [SerializeField] LayerMask groundLayer;
+    
 
     //Stores magnitude of the player speed based on whether the accelerate key(Fire3 or Lshift) is pressed or not
     private float speedModifier;
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         if (accelerate > 0 && currentXInput != 0)
         {
             speedModifier = Mathf.Lerp(speedModifier, maxSpeed, 1000);
-            print(speedModifier);
+            
         }
         else
         {
@@ -64,10 +65,11 @@ public class PlayerMovement : MonoBehaviour
     //Controls Vertical Translations
     private void VerticalMovement()
     {
-
+        
         //If the Player is grounded and the jump button is pressed, then execute a jump by applying vertical velocity
         if (Grounded() && Input.GetButtonDown("Jump"))
         {
+            print("Jumping");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         //Apply the smooth jump logic
@@ -78,9 +80,10 @@ public class PlayerMovement : MonoBehaviour
     private bool Grounded()
     {
         //Store the result of a 2d raycast, which only hits things on the environment layer
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up,0.7f,groundLayer);
-
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, transform.localScale.y * 0.7f,groundLayer); //ISAAC ADDITION - added transform.localscale.x so the size of the isgrounded check scales linearly with cube size
         //If the raycast hits something, return true, else return false
+
+
         return hit.collider != null;
     }
 
