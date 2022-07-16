@@ -12,10 +12,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 50f;
     [SerializeField] float fallMulitplier = 2.5f;
     [SerializeField] float lowJumpMultiplier = 2f;
-
+    
     //Variables that reference other attributes and GameObjects
     [Header("References")]
     [SerializeField] LayerMask groundLayer;
+    
 
     //Stores magnitude of the player speed based on whether the accelerate key(Fire3 or Lshift) is pressed or not
     private float speedModifier;

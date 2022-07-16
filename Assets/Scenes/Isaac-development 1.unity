@@ -193,7 +193,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337745910}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dae413a99fa04444b0758583718bef2, type: 3}
   m_Name: 
@@ -43328,6 +43328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 499264772}
     - target: {fileID: 6444589004242710004, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: m_RootOrder
       value: 7
