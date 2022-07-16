@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         float movement = Mathf.Clamp(speedModifier * currentXInput, -1f * maxSpeed, maxSpeed);
 
         //Apply the speed to the x component of the player, preserving the y velocity
-        rb.velocity = new Vector2(movement*Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(movement, rb.velocity.y);
     }
 
     //Controls Vertical Translations
