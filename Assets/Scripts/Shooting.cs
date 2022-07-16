@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     //References the main camera
-    private Camera mainCam;
+    
     //References gun Sprite
     private SpriteRenderer gunSprite;
    
@@ -21,7 +21,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] ParticleSystem muzzle;
     [SerializeField] GameObject FlashPoint;
     [SerializeField] GameObject Gun;
-
+    [SerializeField] Camera mainCam;
     [Header("Shooting Settings")]
     [SerializeField] float firerate;
 
@@ -29,7 +29,7 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         //Sets mainCam to reference the main camera, reset the cooldown to 0 and sets gunSprite to the sprite Renderer on the gun 
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+     
         coolDown = 0f;
         gunSprite = Gun.GetComponent<SpriteRenderer>();
        
