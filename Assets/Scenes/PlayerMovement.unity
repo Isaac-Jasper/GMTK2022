@@ -130,9 +130,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 1657577829}
+    - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 6444589004242710004, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710004, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710004, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6444589004242710004, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,6 +189,34 @@ PrefabInstance:
     - target: {fileID: 6444589004242710004, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710008, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: maxSpeed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710008, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: minSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710008, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: jumpForce
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710008, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: fallMulitplier
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710008, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710009, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444589004242710009, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: m_GravityScale
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6444589004242710011, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: m_Name
@@ -233,7 +277,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 100
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -342,8 +386,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744681941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.94, z: 0}
-  m_LocalScale: {x: 13.01, y: 1, z: 1}
+  m_LocalPosition: {x: 14.3759, y: -53.8, z: 0}
+  m_LocalScale: {x: 395.37955, y: 4.615, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

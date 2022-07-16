@@ -514,6 +514,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1288158370}
     - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: firerate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: knockback
       value: 50
       objectReference: {fileID: 0}

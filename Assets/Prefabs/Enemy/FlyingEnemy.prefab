@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3420444320487188470}
   - component: {fileID: 3420444320487188469}
   - component: {fileID: 3420444320487188468}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3420444321216091248}
   - component: {fileID: 3420444321216091252}
   - component: {fileID: 3044824281303617946}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: FlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
