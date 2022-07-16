@@ -11,15 +11,12 @@ public class CustomGravity : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
     }
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.transform.CompareTag("Ground")) {
-            grounded = true;
-            rb.useGravity = true;
-        }
+    public void setGravity(float set) {
+        gravityScale = set;
     }
     void FixedUpdate() {
         if (!grounded) {
-            Vector3 gravity = Gravity * gravityScale * Vector3.up;
+            Vector3 gravity = Gravity * gravityScale * Vector3.back;
             rb.AddForce(gravity, ForceMode.Acceleration);
         }
     }
