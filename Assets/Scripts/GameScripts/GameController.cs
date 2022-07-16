@@ -5,14 +5,15 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public List<int> numbers;
+    public GameObject enemy;
     public GameObject dice;
     public Camera Cam3D;
     private void Start() {
         Cam3D.gameObject.SetActive(true);
     }
     private void Update() {
-        if (Input.GetKey(KeyCode.Space)) Instantiate(dice, transform.position, transform.rotation); //for testing
-        if (Input.GetKey(KeyCode.X)) average();//for testing
+        if (Input.GetKeyDown(KeyCode.Space)) enemy.GetComponent<GeneralAI>().Hit(dice); //for testing
+        if (Input.GetKey(KeyCode.X)) average(); //for testing
     }
     public void average() {//for testing
         int total = 0;

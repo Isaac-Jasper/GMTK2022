@@ -12,13 +12,22 @@ public class DiceRoll : MonoBehaviour
     Transform[] diceSides;
     [SerializeField]
     private int side = 1;
-
+    [SerializeField]
+    private CustomGravity cg;
+    [SerializeField]
+    private float fallGravity, maxHeight;
     private bool endOnce;
     private void Start() {
         rollDice();
     }
+    private void Update() {
+        if (Mathf.Abs(transform.position.z) > maxHeight) cg.setGravity(fallGravity);
+    }
     private void OnCollisionEnter(Collision collision) {
-        if (collision.transform.CompareTag("Ground") && !endOnce) StartCoroutine(EndRoll());
+        if (collision.transform.CompareTag("Ground") && !endOnce) {
+            StartCoroutine(EndRoll());
+            cg.setGravity(5);
+        }
     }
     IEnumerator EndRoll() {
         endOnce = true;
@@ -36,9 +45,9 @@ public class DiceRoll : MonoBehaviour
         float zT = Random.Range(-torque, torque);
         float xD = Random.Range(-direction, direction);
         float zD = Random.Range(-direction, direction);
-        rb.AddForce(new Vector3(xD, upForce * Time.deltaTime, zD), ForceMode.VelocityChange);
-        rb.AddTorque(xT * Time.deltaTime, yT * Time.deltaTime, zT * Time.deltaTime, ForceMode.VelocityChange);
 
+        rb.AddForce(new Vector3(xD, zD, -upForce), ForceMode.VelocityChange);
+        rb.AddTorque(xT, yT, zT, ForceMode.VelocityChange);
     }
     private void SetStartRotation() {
         switch (Random.Range(1, 7)) {
@@ -62,9 +71,11 @@ public class DiceRoll : MonoBehaviour
                 break;
         }
     }
-    private int getSide() {
+    public int getSide() {
         for (int i = 1; i < diceSides.Length; i++) {
-            if (diceSides[i].position.y > diceSides[side - 1].position.y) side = i + 1;
+            if (diceSides[i].position.z < diceSides[side - 1].position.z) {
+                side = i + 1;
+            }
         }
         return side;
     }
