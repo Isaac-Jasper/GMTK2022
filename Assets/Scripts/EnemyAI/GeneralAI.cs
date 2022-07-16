@@ -8,17 +8,31 @@ public class GeneralAI : MonoBehaviour
     private int health = 20;
     [SerializeField]
     private Rigidbody2D rb;
-    public void Hit(GameObject hitDie) {
-        GameObject die = Instantiate(hitDie, transform.position + Vector3.back + Vector3.back, Quaternion.identity);
-        StartCoroutine(HitWait(die));
+    [SerializeField]
+    private GameObject Player;
+
+    public GameObject temp; //for testing, holds the dice prefab. in the future will be done through player
+    private void Start() {
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
-    IEnumerator HitWait(GameObject die) {
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Hit(temp, 50);
+        }
+    }
+    public void Hit(GameObject hitDie, float knockback) { //hit die is the dice that wil be rolled to deal damage
+        GameObject die = Instantiate(hitDie, transform.position + Vector3.back + Vector3.back, Quaternion.identity);
+        StartCoroutine(HitWait(die, knockback));
+    }
+    IEnumerator HitWait(GameObject die, float knockback) { //deals the damage after dice has rolled
+        rb.AddForce((transform.position - Player.transform.position).normalized * knockback, ForceMode2D.Impulse);
         yield return new WaitForSeconds(2);
         int damage = die.GetComponent<DiceRoll>().getSide();
         health -= damage;
         if (health <= 0) Death();
     }
     private void Death() {
+        RoundLogic.rl.ChangeEnemyCount(-1); //decreases enemy count
         Destroy(gameObject);
     }
 }
