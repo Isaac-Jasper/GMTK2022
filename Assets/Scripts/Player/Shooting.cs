@@ -20,12 +20,15 @@ public class Shooting : MonoBehaviour
     [SerializeField] ParticleSystem tracer;
     [SerializeField] ParticleSystem muzzle;
     [SerializeField] GameObject FlashPoint;
-    [SerializeField] GameObject Gun;
+    [SerializeField] GameObject Gun; 
+    [SerializeField] GameObject dice; //ISAAC ADDITION - temp dice variable, will eventually have a proper way to store dice prefabs, with potential for multiple dice, probably an array
     [SerializeField] Camera mainCam;
+    [SerializeField] LayerMask groundLayer;
+
     [Header("Shooting Settings")]
     [SerializeField] float firerate;
+    [SerializeField] float knockback; //ISAAC ADDITION - knockback stat
 
-    
     private void Start()
     {
         //Sets mainCam to reference the main camera, reset the cooldown to 0 and sets gunSprite to the sprite Renderer on the gun 
@@ -36,6 +39,7 @@ public class Shooting : MonoBehaviour
     }
     private void Update()
     {
+
         //Gets the mouse position on the screen, and passes them into functions to Rotate the gun and calculate Shooting trajectory, and then flip the weapon sprite when appropriate
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         RotateHand(mousePos);
@@ -65,8 +69,15 @@ public class Shooting : MonoBehaviour
         //If cooldown greater than the set firerate and the mouse is left clicked, create both a bullet tracer and muzzle flash and then raycast for hits(TO BE IMPLEMENTED)
         if(Input.GetButton("Fire1") && coolDown > firerate)
         {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position, 1000, groundLayer); //ISAAC ADDITION - added raycast to mouse position, reverted to old 3d camera overlay to get the aim correct, so the 2d camera is the main camera now, the distance needs to be a big number otherwise an error is thrown if you click outside distance
+            Debug.Log(hit.collider);
+            if (hit.collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
+                hit.collider.GetComponent<GeneralAI>().Hit(dice, knockback);
+            }
+
             Instantiate(tracer, FlashPoint.transform.position, FlashPoint.transform.rotation);
             Instantiate(muzzle, FlashPoint.transform.position, FlashPoint.transform.rotation);
+            
             coolDown = 0;
         }
         else

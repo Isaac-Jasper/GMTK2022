@@ -21,15 +21,15 @@ public class DiceRoll : MonoBehaviour
         rollDice();
     }
     private void Update() {
-        if (Mathf.Abs(transform.position.z) > maxHeight) cg.setGravity(fallGravity);
+        if (Mathf.Abs(transform.position.z) > maxHeight) cg.setGravity(fallGravity); //increases gravity if position is above (or below) a certain value
     }
     private void OnCollisionEnter(Collision collision) {
-        if (collision.transform.CompareTag("Ground") && !endOnce) {
+        if (collision.transform.CompareTag("Ground") && !endOnce) { //when it hits ground it decreases the gravity again, this avoids the dice sinking into the ground
             StartCoroutine(EndRoll());
             cg.setGravity(5);
         }
     }
-    IEnumerator EndRoll() {
+    IEnumerator EndRoll() {//stops the die from moving and then destroyes it, will also play any exit animation
         endOnce = true;
         yield return new WaitForSeconds(2);
         rb.isKinematic = true;
@@ -37,7 +37,7 @@ public class DiceRoll : MonoBehaviour
         //exit animation
         Destroy(gameObject);
     }
-    private void rollDice() {
+    private void rollDice() { //applies initial transformations to die to rotate and send it in the air
         SetStartRotation();
 
         float xT = Random.Range(-torque, torque);
@@ -49,7 +49,7 @@ public class DiceRoll : MonoBehaviour
         rb.AddForce(new Vector3(xD, zD, -upForce), ForceMode.VelocityChange);
         rb.AddTorque(xT, yT, zT, ForceMode.VelocityChange);
     }
-    private void SetStartRotation() {
+    private void SetStartRotation() { //randomises the upwards facing face on die to maintain randomness
         switch (Random.Range(1, 7)) {
             case 1:
                 transform.Rotate(new Vector3(90,0,0));
@@ -71,7 +71,7 @@ public class DiceRoll : MonoBehaviour
                 break;
         }
     }
-    public int getSide() {
+    public int getSide() { //returns the upmost side
         for (int i = 1; i < diceSides.Length; i++) {
             if (diceSides[i].position.z < diceSides[side - 1].position.z) {
                 side = i + 1;
