@@ -25,6 +25,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] GameObject diceGold;
     [SerializeField] Camera mainCam;
     [SerializeField] LayerMask Environment;
+    [SerializeField] int diceMulltiplier;
 
     [Header("Shooting Settings")]
     [SerializeField] float firerate;
@@ -72,7 +73,7 @@ public class Shooting : MonoBehaviour
         {
             RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, mousePos - transform.position, 1000, Environment); //ISAAC ADDITION - added raycast to mouse position, reverted to old 3d camera overlay to get the aim correct, so the 2d camera is the main camera now, the distance needs to be a big number otherwise an error is thrown if you click outside distance
 
-            print(hit.Length);
+           
             
             if ( hit.Length != 0 && hit[0].collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
                  hit[0].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback, 1);
@@ -80,7 +81,7 @@ public class Shooting : MonoBehaviour
                 {
                     if(hit[i].collider.CompareTag("Enemy"))
                     {
-                        hit[i].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback, 1);
+                        hit[i].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback,diceMulltiplier);
                     }
                     else
                     {

@@ -16,17 +16,20 @@ public class PlayerMovement : MonoBehaviour
     //Variables that reference other attributes and GameObjects
     [Header("References")]
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] Animator animator;
     
 
     //Stores magnitude of the player speed based on whether the accelerate key(Fire3 or Lshift) is pressed or not
     private float speedModifier;
     
     Rigidbody2D rb;
+    SpriteRenderer sprite;
 
     private void Start()
     {
         //Set rb to reference this objects rigidbody2D
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         //Sets the players speed to the base value
         speedModifier = minSpeed;
     }
@@ -55,9 +58,28 @@ public class PlayerMovement : MonoBehaviour
             speedModifier = Mathf.Lerp(speedModifier, minSpeed, 1000);
         }
 
+        
+
         //Make sure the speed to be applied to the player does not exceed the max speed.
         float movement = Mathf.Clamp(speedModifier * currentXInput, -1f * maxSpeed, maxSpeed);
 
+        if(movement >0)
+        {
+            sprite.flipX = true;
+        }
+        else if(movement <0)
+        {
+            sprite.flipX = false;
+        }
+
+        if (movement != 0)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
         //Apply the speed to the x component of the player, preserving the y velocity
         rb.velocity = new Vector2(movement, rb.velocity.y);
     }
@@ -69,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         //If the Player is grounded and the jump button is pressed, then execute a jump by applying vertical velocity
         if (Grounded() && Input.GetButtonDown("Jump"))
         {
-            print("Jumping");
+            
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         //Apply the smooth jump logic
