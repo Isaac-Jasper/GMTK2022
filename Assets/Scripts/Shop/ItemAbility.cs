@@ -36,25 +36,19 @@ public class ItemAbility : MonoBehaviour
             case "boots":
                 Boots();
                 break;
-            case "cookieJar":
-                CookieJar();
-                break;
             case "diceStack":
                 DiceStack();
                 break;
         }
     }
     private void DiceStack() {
-        
+        Shooting.shooting.AddDiceCount(1);
     }
     private void Boots() {
-
+        PlayerMovement.pm.AddSpeed(10);
     }
     private void Ammo() {
-
-    }
-    private void CookieJar() {
-
+        Shooting.shooting.MultFirerate(0.8f);
     }
     private void Gold(string type) {
         int index;

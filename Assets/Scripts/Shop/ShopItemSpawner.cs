@@ -22,7 +22,7 @@ public class ShopItemSpawner : MonoBehaviour
     private Image image;
     
     private string itemName;
-    private float itemCost = 0;
+    private int itemCost = 0;
     private float totalItems;
     public void SpawnItem() {
         if (currentItem != null) currentItem = null;
@@ -41,9 +41,13 @@ public class ShopItemSpawner : MonoBehaviour
         return (int) (Mathf.Pow(rand, raritySteepness) * totalItems);
     }
     private int CalculateCost(int rarity) {
-        return (int) (Mathf.Sqrt(RoundLogic.rl.GetRound()) * rarity * 10);
+        return (int) (Mathf.Pow(rarity, 1.5f) * 2);
     }
     public void ReplaceSide() {
-        it.ActivateItem(itemName);
+        if (GUI.gui.GetMoney() > itemCost) {
+            GUI.gui.AddMoney(-itemCost);
+            it.ActivateItem(itemName);
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement pm { get; private set; }
     //Variables holding value that determine the magnitude of movement
     [Header("Movement Modifiers")]
     [SerializeField] float minSpeed= 10f;
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Animator animator;
-    
+    private bool isAlive = true;
 
     //Stores magnitude of the player speed based on whether the accelerate key(Fire3 or Lshift) is pressed or not
     private float speedModifier;
@@ -27,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        if (pm != null && pm != this) Destroy(this);
+        else pm = this;
         //Set rb to reference this objects rigidbody2D
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -37,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //Apply both horizontal movement and vertical movement every frame
-        HorizontalMovement();
-        VerticalMovement(); 
+        if (isAlive) HorizontalMovement();
+        if (isAlive) VerticalMovement(); 
     }
 
     private void HorizontalMovement()
@@ -120,5 +123,13 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+    }
+    public void AddSpeed(float add) {
+        minSpeed += add;
+        maxSpeed += add;
+    }
+    public void dead() {
+        isAlive = false;
+        rb.velocity = Vector3.zero;
     }
 }

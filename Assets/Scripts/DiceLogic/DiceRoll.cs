@@ -76,7 +76,6 @@ public class DiceRoll : MonoBehaviour
     public int getSide() { //returns the upmost side
         int maxIndex = 0;
         for (int i = 1; i < transform.childCount; i++) {
-            Debug.Log(i);
             if (transform.GetChild(i).position.z < transform.GetChild(maxIndex).position.z) {
                 string num = transform.GetChild(i).GetChild(0).name.Substring(transform.GetChild(i).GetChild(0).name.Length - 1);
                 if (num.Equals("c")) return -1;

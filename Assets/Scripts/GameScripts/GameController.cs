@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -10,20 +11,41 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private float startDelay;
     [SerializeField]
-    GameObject camera3D, camera2D;
+    GameObject camera3D, camera2D, gameOverCanvas;
     [SerializeField]
     GameObject[] shop, arena;
     [SerializeField]
     Animator cameraAnimation;
     [SerializeField]
     ShopItemSpawner[] items;
+    [SerializeField]
+    float fadeInSpeed;
     private bool isShop;
+    private bool setOnce = false;
     private void Start() {
         if (GC != null && GC != this) Destroy(this);
         else GC = this;
 
         camera3D.SetActive(true);
         StartCoroutine(StartGameAfterDelay());
+    }
+    private void Update() {
+        if (GUI.gui.GetHealth() <= 0 && !setOnce) {
+            GUI.gui.SetHealth(0);
+            setOnce = true;
+            StartCoroutine(GameOver());
+        }
+    }
+    IEnumerator GameOver() {
+        PlayerMovement.pm.dead();
+        CanvasGroup cv = gameOverCanvas.GetComponent<CanvasGroup>();
+        cv.alpha = 0;
+        gameOverCanvas.SetActive(true);
+        while (cv.alpha < 1) {
+            cv.alpha += fadeInSpeed * Time.deltaTime;
+            yield return null;
+        }
+
     }
     IEnumerator StartGameAfterDelay() {
         yield return new WaitForSeconds(startDelay);
@@ -48,6 +70,7 @@ public class GameController : MonoBehaviour
     }
     private void SpawnItems() {
         foreach (ShopItemSpawner c in items) {
+            c.gameObject.SetActive(true);
             c.SpawnItem();
         }
     }

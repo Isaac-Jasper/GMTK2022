@@ -104,8 +104,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b850226654da49b4880905423653abea, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: f3d5aa2f1387f2f48b6401bb9b1e1592, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -162,9 +162,11 @@ GameObject:
   - component: {fileID: 6444589004242710008}
   - component: {fileID: 6444589004242710006}
   - component: {fileID: 6444589004242710009}
+  - component: {fileID: 682298594}
+  - component: {fileID: 682298588}
   m_Layer: 0
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 6444589004242710011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.025, y: 1.159, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6444589004132777909}
@@ -225,9 +227,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.102321625, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -254,13 +256,15 @@ MonoBehaviour:
   muzzle: {fileID: 4714528488876380929, guid: 4aa0dc4d66dfac343a262fadb8903579, type: 3}
   FlashPoint: {fileID: 6444589003470852566}
   Gun: {fileID: 6444589003517895596}
-  dice: {fileID: 0}
+  dice: {fileID: 9157565673016419434, guid: cb9b8ab784c94b04290eb1a281e89751, type: 3}
+  diceGold: {fileID: 9157565673016419434, guid: 0017dc8eff88aa14883c47de05c776a7, type: 3}
   mainCam: {fileID: 0}
   Environment:
     serializedVersion: 2
-    m_Bits: 0
-  firerate: 100
-  knockback: 0
+    m_Bits: 192
+  diceMulltiplier: 0
+  firerate: 50
+  knockback: 50
 --- !u!114 &6444589004242710008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,14 +277,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5c1c19045eb9647b29b29f518ba562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 10
-  maxSpeed: 15
-  jumpForce: 7.5
-  fallMulitplier: 2.5
-  lowJumpMultiplier: 2.5
+  minSpeed: 5
+  maxSpeed: 8
+  jumpForce: 75
+  fallMulitplier: 25
+  lowJumpMultiplier: 25
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  animator: {fileID: 682298594}
 --- !u!61 &6444589004242710006
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -290,7 +295,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6444589004242710011}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1546e908ca71b1845b5219b44ebc67f7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -322,9 +327,47 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 10
+  m_Material: {fileID: 6200000, guid: 1546e908ca71b1845b5219b44ebc67f7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!95 &682298594
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444589004242710011}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2c8f66b0bf74a24a953669aefda1f51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &682298588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444589004242710011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e86dbab616e4e4bbcbfcec1cea2210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  Enemy:
+    serializedVersion: 2
+    m_Bits: 128
+  knockBack: 200
+  IFrameCounter: 10

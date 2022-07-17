@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public static Shooting shooting { get; private set; }
     //References the main camera
     
     //References gun Sprite
@@ -33,6 +34,8 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
+        if (shooting != null && shooting != this) Destroy(this);
+        else shooting = this;
         //Sets mainCam to reference the main camera, reset the cooldown to 0 and sets gunSprite to the sprite Renderer on the gun 
      
         coolDown = 0f;
@@ -76,12 +79,12 @@ public class Shooting : MonoBehaviour
            
             
             if ( hit.Length != 0 && hit[0].collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
-                 hit[0].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback, 1);
+                 hit[0].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback, diceMulltiplier);
                 for(int i = 1; i < hit.Length; i++ )
                 {
                     if(hit[i].collider.CompareTag("Enemy"))
                     {
-                        hit[i].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback,diceMulltiplier);
+                        hit[i].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback, diceMulltiplier);
                     }
                     else
                     {
@@ -108,5 +111,15 @@ public class Shooting : MonoBehaviour
         Vector3 rotation = mousePosition - hand.transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    }
+
+    public void AddDiceCount(int add) {
+        diceMulltiplier += add;
+    }
+    public void AddKnockback(float add) {
+        knockback += add;
+    }
+    public void MultFirerate(float Mult) {
+        firerate *= Mult;
     }
 }

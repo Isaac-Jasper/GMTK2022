@@ -12,7 +12,8 @@ public class RoundLogic : MonoBehaviour
     private float waveDelay, enemyDelay;
     [SerializeField]
     private Vector2 topLeftBound, bottomRightBound;
-
+    [SerializeField]
+    GameObject SpawnFlash;
     private int waveCount, currentWave, enemiesAlive, waveEnemies, roundCount;
 
     private void Start() {
@@ -26,8 +27,8 @@ public class RoundLogic : MonoBehaviour
         Debug.Log("round start");
         currentWave = 0;
         this.roundCount = roundCount;
-
-        if (roundCount > 2) waveCount = (int)Mathf.Log(roundCount) * 6; //equation calculates how many waves there will be this round
+        Debug.Log(Mathf.Log(roundCount) * 6);
+        if (roundCount > 2) waveCount = (int) (Mathf.Log10(roundCount) * 6); //equation calculates how many waves there will be this round
         else waveCount = roundCount;
 
         GUI.gui.SetRound(roundCount);
@@ -68,13 +69,16 @@ public class RoundLogic : MonoBehaviour
     }
     private IEnumerator Spawn() { //spawns a specific random enemy from enemies
         Debug.Log("spawned");
-        GameObject enemy = enemies[Random.Range(0, enemies.Length)];
         Vector2 coordinates = new Vector2(Random.Range(topLeftBound.x, bottomRightBound.x), Random.Range(topLeftBound.y, bottomRightBound.y)); //randomises spawn location within bounds set
-        //spawn animation
-        yield return new WaitForSeconds(1);
-        Instantiate(enemy, coordinates, Quaternion.identity);
-    }
 
+        yield return new WaitForSeconds(1);
+        Instantiate(SpawnFlash, coordinates, Quaternion.identity);
+    }
+    public void SpawnEnemy(Vector3 pos) {
+        GameObject enemy = enemies[Random.Range(0, enemies.Length)];
+        Instantiate(enemy, pos, Quaternion.identity);
+
+    }
     //setter methods
     public void ChangeEnemyCount(int set) {
         enemiesAlive += set;

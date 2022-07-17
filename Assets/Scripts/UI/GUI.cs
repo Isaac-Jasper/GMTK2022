@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class GUI : MonoBehaviour
-{
+public class GUI : MonoBehaviour {
     public static GUI gui { get; private set; } //sets this script as a singleton, only one of this script must exist and it can be accessed anywere
 
     [SerializeField]
@@ -11,6 +10,7 @@ public class GUI : MonoBehaviour
         roundShop, waveShop, moneyShop, healthShop;
     [SerializeField]
     private int moneyAmount;
+    private int healthAmount;
     private void Start() {
         if (gui != null && gui != this) Destroy(this); //makes sure only one isntance of this script exists
         else gui = this;
@@ -33,9 +33,13 @@ public class GUI : MonoBehaviour
     public void SetHealth(int health) {
         this.health.text = "Health " + health + " / " + 5; //change to reference player
         healthShop.text = this.health.text;
+        healthAmount = health;
     }
     //getter methods
     public int GetMoney() {
         return moneyAmount;
+    }
+    public int GetHealth() {
+        return healthAmount;
     }
 }

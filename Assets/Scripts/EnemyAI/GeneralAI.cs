@@ -13,6 +13,7 @@ public class GeneralAI : MonoBehaviour
 
     public GameObject temp; //for testing, holds the dice prefab. in the future will be done through player
     private void Start() {
+        health = 1 + (int)Mathf.Sqrt(RoundLogic.rl.GetRound());
         Player = GameObject.FindGameObjectWithTag("Player");
     }
     public void Hit(GameObject hitDie, GameObject goldDie, float knockback, int diceCount) { //hit die is the dice that wil be rolled to deal damage
