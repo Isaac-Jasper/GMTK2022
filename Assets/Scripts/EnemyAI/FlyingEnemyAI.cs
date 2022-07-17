@@ -19,8 +19,8 @@ public class FlyingEnemyAI : MonoBehaviour
         AI();
     }
     private void AI() { //moves the fly towards the player and switches the flies direction to face player
-        rb.AddForce((playerTransform.position - transform.position).normalized * speed);
-        if (rb.velocity.x < 0) enemySprite.eulerAngles = new Vector3(0, 0, 0);
-        else enemySprite.eulerAngles = new Vector3(0, 180, 0);
+        rb.AddForce((playerTransform.position - transform.position).normalized * speed * Time.deltaTime);
+        if (rb.velocity.x < 0) gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+        else gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
     }
 }
