@@ -16,6 +16,9 @@ public class DiceRoll : MonoBehaviour
     private CustomGravity cg;
     [SerializeField]
     private float fallGravity, maxHeight;
+    [SerializeField]
+    private bool isGold;
+
     private bool endOnce;
     private void Start() {
         rollDice();
@@ -33,6 +36,7 @@ public class DiceRoll : MonoBehaviour
         endOnce = true;
         yield return new WaitForSeconds(2);
         rb.isKinematic = true;
+        if (isGold) addMoney();
         yield return new WaitForSeconds(2);
         //exit animation
         Destroy(gameObject);
@@ -78,5 +82,8 @@ public class DiceRoll : MonoBehaviour
             }
         }
         return side;
+    }
+    public void addMoney() {
+        GUI.gui.AddMoney(getSide());
     }
 }

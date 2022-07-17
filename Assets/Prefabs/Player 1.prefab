@@ -274,10 +274,14 @@ MonoBehaviour:
   muzzle: {fileID: 4714528488876380929, guid: 4aa0dc4d66dfac343a262fadb8903579, type: 3}
   FlashPoint: {fileID: 6444589003470852566}
   Gun: {fileID: 6444589003517895596}
-  dice: {fileID: 0}
+  dice: {fileID: 9157565673016419434, guid: cb9b8ab784c94b04290eb1a281e89751, type: 3}
+  diceGold: {fileID: 9157565673016419434, guid: 0017dc8eff88aa14883c47de05c776a7, type: 3}
   mainCam: {fileID: 0}
-  knockback: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   firerate: 100
+  knockback: 0
 --- !u!61 &6444589004242710006
 BoxCollider2D:
   m_ObjectHideFlags: 0

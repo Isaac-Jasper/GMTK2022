@@ -20,8 +20,9 @@ public class Shooting : MonoBehaviour
     [SerializeField] ParticleSystem tracer;
     [SerializeField] ParticleSystem muzzle;
     [SerializeField] GameObject FlashPoint;
-    [SerializeField] GameObject Gun; 
+    [SerializeField] GameObject Gun;
     [SerializeField] GameObject dice; //ISAAC ADDITION - temp dice variable, will eventually have a proper way to store dice prefabs, with potential for multiple dice, probably an array
+    [SerializeField] GameObject diceGold;
     [SerializeField] Camera mainCam;
     [SerializeField] LayerMask Environment;
 
@@ -74,12 +75,12 @@ public class Shooting : MonoBehaviour
             print(hit.Length);
             
             if ( hit.Length != 0 && hit[0].collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
-                 hit[0].collider.GetComponent<GeneralAI>().Hit(dice, knockback);
+                 hit[0].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback);
                 for(int i = 1; i < hit.Length; i++ )
                 {
                     if(hit[i].collider.CompareTag("Enemy"))
                     {
-                        hit[i].collider.GetComponent<GeneralAI>().Hit(dice, knockback);
+                        hit[i].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback);
                     }
                     else
                     {
