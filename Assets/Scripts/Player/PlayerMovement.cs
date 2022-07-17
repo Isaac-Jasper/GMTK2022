@@ -80,11 +80,11 @@ public class PlayerMovement : MonoBehaviour
     private bool Grounded()
     {
         //Store the result of a 2d raycast, which only hits things on the environment layer
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, transform.localScale.y * 0.7f,groundLayer); //ISAAC ADDITION - added transform.localscale.x so the size of the isgrounded check scales linearly with cube size
+        RaycastHit2D[] hit = Physics2D.BoxCastAll(transform.position - new Vector3(0,transform.localScale.y/2,0),new Vector2(transform.localScale.x-0.01f,0.05f),0,Vector2.down,1, groundLayer); //ISAAC ADDITION - added transform.localscale.x so the size of the isgrounded check scales linearly with cube size
         //If the raycast hits something, return true, else return false
 
-
-        return hit.collider != null;
+        return hit.Length != 0;
+        
     }
 
     //Apply smooth jump logic

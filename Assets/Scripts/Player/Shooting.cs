@@ -24,7 +24,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] GameObject dice; //ISAAC ADDITION - temp dice variable, will eventually have a proper way to store dice prefabs, with potential for multiple dice, probably an array
     [SerializeField] GameObject diceGold;
     [SerializeField] Camera mainCam;
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask Environment;
 
     [Header("Shooting Settings")]
     [SerializeField] float firerate;
@@ -70,11 +70,24 @@ public class Shooting : MonoBehaviour
         //If cooldown greater than the set firerate and the mouse is left clicked, create both a bullet tracer and muzzle flash and then raycast for hits(TO BE IMPLEMENTED)
         if(Input.GetButton("Fire1") && coolDown > firerate)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position, 1000, groundLayer); //ISAAC ADDITION - added raycast to mouse position, reverted to old 3d camera overlay to get the aim correct, so the 2d camera is the main camera now, the distance needs to be a big number otherwise an error is thrown if you click outside distance
-            Debug.Log(hit.collider);
-            if (hit.collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
-                hit.collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback);
-            }
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, mousePos - transform.position, 1000, Environment); //ISAAC ADDITION - added raycast to mouse position, reverted to old 3d camera overlay to get the aim correct, so the 2d camera is the main camera now, the distance needs to be a big number otherwise an error is thrown if you click outside distance
+
+            print(hit.Length);
+            
+            if ( hit.Length != 0 && hit[0].collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
+                 hit[0].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback);
+                for(int i = 1; i < hit.Length; i++ )
+                {
+                    if(hit[i].collider.CompareTag("Enemy"))
+                    {
+                        hit[i].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+             }
 
             Instantiate(tracer, FlashPoint.transform.position, FlashPoint.transform.rotation);
             Instantiate(muzzle, FlashPoint.transform.position, FlashPoint.transform.rotation);
