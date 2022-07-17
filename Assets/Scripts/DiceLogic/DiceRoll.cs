@@ -9,8 +9,6 @@ public class DiceRoll : MonoBehaviour
     [SerializeField]
     private float upForce, torque, direction;
     [SerializeField]
-    Transform[] diceSides;
-    [SerializeField]
     private int side = 1;
     [SerializeField]
     private CustomGravity cg;
@@ -76,14 +74,22 @@ public class DiceRoll : MonoBehaviour
         }
     }
     public int getSide() { //returns the upmost side
-        for (int i = 1; i < diceSides.Length; i++) {
-            if (diceSides[i].position.z < diceSides[side - 1].position.z) {
-                side = i + 1;
+        int maxIndex = 0;
+        for (int i = 1; i < transform.childCount; i++) {
+            Debug.Log(i);
+            if (transform.GetChild(i).position.z < transform.GetChild(maxIndex).position.z) {
+                string num = transform.GetChild(i).GetChild(0).name.Substring(transform.GetChild(i).GetChild(0).name.Length - 1);
+                if (num.Equals("c")) return -1;
+                side = int.Parse(num);
+                maxIndex = i;
             }
         }
         return side;
     }
     public void addMoney() {
-        GUI.gui.AddMoney(getSide());
+        int add = getSide();
+        if (add == -1) GUI.gui.AddMoney(15);
+        else GUI.gui.AddMoney(add);
     }
+
 }

@@ -31,7 +31,7 @@ public class GUI : MonoBehaviour
         moneyShop.text = this.money.text;
     }
     public void SetHealth(int health) {
-        this.health.text = "Round " + health;
+        this.health.text = "Health " + health + " / " + 5; //change to reference player
         healthShop.text = this.health.text;
     }
     //getter methods

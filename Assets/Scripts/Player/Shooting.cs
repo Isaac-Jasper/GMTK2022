@@ -76,7 +76,7 @@ public class Shooting : MonoBehaviour
            
             
             if ( hit.Length != 0 && hit[0].collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
-                 hit[0].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback);
+                 hit[0].collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback, 1);
                 for(int i = 1; i < hit.Length; i++ )
                 {
                     if(hit[i].collider.CompareTag("Enemy"))

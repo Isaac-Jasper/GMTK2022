@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     GameObject[] shop, arena;
     [SerializeField]
     Animator cameraAnimation;
+    [SerializeField]
+    ShopItemSpawner[] items;
     private bool isShop;
     private void Start() {
         if (GC != null && GC != this) Destroy(this);
@@ -41,6 +43,20 @@ public class GameController : MonoBehaviour
         foreach (GameObject c in arena) c.SetActive(isShop);
         isShop = !isShop;
         if (!isShop) StartNextRound();
+        else SpawnItems();
         cameraAnimation.SetBool("isTransitionOut", false);
+    }
+    private void SpawnItems() {
+        foreach (ShopItemSpawner c in items) {
+            c.SpawnItem();
+        }
+    }
+    public void Refresh() {
+        if (GUI.gui.GetMoney() >= 10) {
+            GUI.gui.AddMoney(-10);
+            foreach (ShopItemSpawner c in items) {
+                c.SpawnItem();
+            }
+        }
     }
 }

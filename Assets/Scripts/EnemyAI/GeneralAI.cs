@@ -15,21 +15,31 @@ public class GeneralAI : MonoBehaviour
     private void Start() {
         Player = GameObject.FindGameObjectWithTag("Player");
     }
-    public void Hit(GameObject hitDie, GameObject goldDie, float knockback) { //hit die is the dice that wil be rolled to deal damage
-        GameObject dieAmmo = Instantiate(hitDie, transform.position + Vector3.back + Vector3.back, Quaternion.identity);
-        StartCoroutine(HitWait(dieAmmo, goldDie, knockback));
+    public void Hit(GameObject hitDie, GameObject goldDie, float knockback, int diceCount) { //hit die is the dice that wil be rolled to deal damage
+        GameObject[] dieAmmo = new GameObject[diceCount];
+        for (int i = 0; i < diceCount; i++) {
+            dieAmmo[i] = Instantiate(hitDie, transform.position + Vector3.back + Vector3.back, Quaternion.identity);
+            dieAmmo[i].SetActive(true);
+        }
+        StartCoroutine(HitWait(dieAmmo, goldDie, knockback, diceCount));
     }
-    IEnumerator HitWait(GameObject die, GameObject dieGold, float knockback) { //deals the damage after dice has rolled
+    IEnumerator HitWait(GameObject[] die, GameObject dieGold, float knockback, int diceCount) { //deals the damage after dice has rolled
         rb.AddForce((transform.position - Player.transform.position).normalized * knockback, ForceMode2D.Impulse);
         yield return new WaitForSeconds(2);
-        int damage = die.GetComponent<DiceRoll>().getSide();
+        int damage = 0;
+        for (int i = 0; i < diceCount; i++) {
+            int add = die[i].GetComponent<DiceRoll>().getSide();
+            if (add == -1) add = 999999;
+            damage += add;
+        }
         health -= damage;
-        if (health <= 0) Death(dieGold);
+        if (health <= 0) Death(dieGold, diceCount);
     }
-    private void Death(GameObject dieGold) {
+    private void Death(GameObject dieGold, int diceCount) {
         RoundLogic.rl.ChangeEnemyCount(-1); //decreases enemy count
-        Instantiate(dieGold, transform.position, Quaternion.identity);
-        Instantiate(dieGold, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        for (int i = 0; i < diceCount; i++) {
+            Instantiate(dieGold, transform.position, Quaternion.identity).SetActive(true);
+        }
+            Destroy(gameObject);
     }
 }
