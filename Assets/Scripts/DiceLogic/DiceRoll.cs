@@ -86,6 +86,7 @@ public class DiceRoll : MonoBehaviour
         return side;
     }
     public void addMoney() {
+        SFXControlleer.sfx.PlaySound("MoneyUp");
         int add = getSide();
         if (add == -1) GUI.gui.AddMoney(15);
         else GUI.gui.AddMoney(add);

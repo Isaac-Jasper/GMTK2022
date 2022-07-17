@@ -94,7 +94,8 @@ public class PlayerMovement : MonoBehaviour
         //If the Player is grounded and the jump button is pressed, then execute a jump by applying vertical velocity
         if (Grounded() && Input.GetButtonDown("Jump"))
         {
-            
+            SFXControlleer.sfx.PlaySound("MarioJump");
+
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         //Apply the smooth jump logic
