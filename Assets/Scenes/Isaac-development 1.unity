@@ -471,7 +471,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -515,11 +515,15 @@ PrefabInstance:
       objectReference: {fileID: 1288158370}
     - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: firerate
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: knockback
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+      propertyPath: Environment.m_Bits
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 1341761498262042790, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
       propertyPath: groundLayer.m_Bits
@@ -623,6 +627,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+--- !u!1 &1549871910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6444589004242710011, guid: a58e86c413e754b4f8b5e68efb1c33dd, type: 3}
+  m_PrefabInstance: {fileID: 1549871909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1549871911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549871910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e86dbab616e4e4bbcbfcec1cea2210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  Enemy:
+    serializedVersion: 2
+    m_Bits: 128
+  knockBack: 200
 --- !u!1 &1911625044
 GameObject:
   m_ObjectHideFlags: 0
