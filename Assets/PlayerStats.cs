@@ -36,7 +36,7 @@ public class PlayerStats : MonoBehaviour
         //Check if collision is with an enemy
         if(collision.collider.CompareTag("Enemy") && iFrame >IFrameCounter)
         {
-
+            SFXControlleer.sfx.PlaySound("PlayerHit");
             //Get an array of all objects within a radius of twice the player scale on the enemy layer
             RaycastHit2D[] hit = Physics2D.CircleCastAll(new Vector2(transform.position.x,transform.position.y), transform.localScale.x * 2f, new Vector2(0, 0), 0, Enemy);
             

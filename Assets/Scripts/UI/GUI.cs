@@ -26,6 +26,7 @@ public class GUI : MonoBehaviour {
         waveShop.text = this.wave.text;
     }
     public void AddMoney(int money) {
+
         moneyAmount += money;
         this.money.text = "$" + moneyAmount;
         moneyShop.text = this.money.text;

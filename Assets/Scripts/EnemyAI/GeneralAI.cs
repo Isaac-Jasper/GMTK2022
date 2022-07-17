@@ -17,6 +17,8 @@ public class GeneralAI : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
     }
     public void Hit(GameObject hitDie, GameObject goldDie, float knockback, int diceCount) { //hit die is the dice that wil be rolled to deal damage
+        SFXControlleer.sfx.PlaySound("EnemyHit");
+
         GameObject[] dieAmmo = new GameObject[diceCount];
         for (int i = 0; i < diceCount; i++) {
             dieAmmo[i] = Instantiate(hitDie, transform.position + Vector3.back + Vector3.back, Quaternion.identity);
@@ -41,6 +43,8 @@ public class GeneralAI : MonoBehaviour
         for (int i = 0; i < diceCount; i++) {
             Instantiate(dieGold, transform.position, Quaternion.identity).SetActive(true);
         }
-            Destroy(gameObject);
+        SFXControlleer.sfx.PlaySound("Splat");
+
+        Destroy(gameObject);
     }
 }

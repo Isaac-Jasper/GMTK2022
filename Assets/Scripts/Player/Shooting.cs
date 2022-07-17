@@ -74,6 +74,7 @@ public class Shooting : MonoBehaviour
         //If cooldown greater than the set firerate and the mouse is left clicked, create both a bullet tracer and muzzle flash and then raycast for hits(TO BE IMPLEMENTED)
         if(Input.GetButton("Fire1") && coolDown > firerate)
         {
+            SFXControlleer.sfx.PlaySound("AlternateShoot");
             RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, mousePos - transform.position, 1000, Environment); //ISAAC ADDITION - added raycast to mouse position, reverted to old 3d camera overlay to get the aim correct, so the 2d camera is the main camera now, the distance needs to be a big number otherwise an error is thrown if you click outside distance
 
            
@@ -100,7 +101,7 @@ public class Shooting : MonoBehaviour
         }
         else
         {//else, do nothing and increment the cooldown
-            coolDown++;
+            coolDown += Time.deltaTime;
         }
     }
 

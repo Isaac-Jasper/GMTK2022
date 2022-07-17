@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(Transition());
     }
     private IEnumerator Transition() {//animates the transition
+        SFXControlleer.sfx.PlaySound("Transition");
         yield return new WaitForSeconds(cameraAnimation.GetCurrentAnimatorStateInfo(0).length); //curently uses camera moving animation, its jarring and could be somethign else
         foreach (GameObject c in shop) c.SetActive(!isShop); //switches between shop and arena
         foreach (GameObject c in arena) c.SetActive(isShop);
@@ -76,6 +77,7 @@ public class GameController : MonoBehaviour
     }
     public void Refresh() {
         if (GUI.gui.GetMoney() >= 10) {
+            SFXControlleer.sfx.PlaySound("Reroll");
             GUI.gui.AddMoney(-10);
             foreach (ShopItemSpawner c in items) {
                 c.SpawnItem();

@@ -46,6 +46,7 @@ public class ShopItemSpawner : MonoBehaviour
     public void ReplaceSide() {
         if (GUI.gui.GetMoney() > itemCost) {
             GUI.gui.AddMoney(-itemCost);
+            SFXControlleer.sfx.PlaySound("Purchase");
             it.ActivateItem(itemName);
             gameObject.SetActive(false);
         }

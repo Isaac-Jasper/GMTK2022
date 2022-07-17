@@ -69,9 +69,11 @@ public class RoundLogic : MonoBehaviour
     }
     private IEnumerator Spawn() { //spawns a specific random enemy from enemies
         Debug.Log("spawned");
+        
         Vector2 coordinates = new Vector2(Random.Range(topLeftBound.x, bottomRightBound.x), Random.Range(topLeftBound.y, bottomRightBound.y)); //randomises spawn location within bounds set
 
         yield return new WaitForSeconds(1);
+        SFXControlleer.sfx.PlaySound("Spawn");
         Instantiate(SpawnFlash, coordinates, Quaternion.identity);
     }
     public void SpawnEnemy(Vector3 pos) {
