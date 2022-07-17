@@ -13,9 +13,10 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Knockback")]
     [SerializeField] float knockBack;
+    [SerializeField] float IFrameCounter;
 
     private int currentHealth;
-
+    private float iFrame = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,13 +24,19 @@ public class PlayerStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    
-    
+
+    private void Update()
+    {
+        iFrame++;
+        GUI.gui.SetHealth(currentHealth);
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Check if collision is with an enemy
-        if(collision.collider.CompareTag("Enemy"))
+        if(collision.collider.CompareTag("Enemy") && iFrame >IFrameCounter)
         {
+
             //Get an array of all objects within a radius of twice the player scale on the enemy layer
             RaycastHit2D[] hit = Physics2D.CircleCastAll(new Vector2(transform.position.x,transform.position.y), transform.localScale.x * 2f, new Vector2(0, 0), 0, Enemy);
             
