@@ -79,4 +79,9 @@ public class RoundLogic : MonoBehaviour
     public void ChangeEnemyCount(int set) {
         enemiesAlive += set;
     }
+
+    //getter methods
+    public int GetRound() {
+        return roundCount;
+    }
 }
