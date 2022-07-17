@@ -10,7 +10,7 @@ public class GUI : MonoBehaviour {
         roundShop, waveShop, moneyShop, healthShop;
     [SerializeField]
     private int moneyAmount;
-    private int healthAmount;
+    private int healthAmount = 5;
     private void Start() {
         if (gui != null && gui != this) Destroy(this); //makes sure only one isntance of this script exists
         else gui = this;
