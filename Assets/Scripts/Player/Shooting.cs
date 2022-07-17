@@ -20,8 +20,9 @@ public class Shooting : MonoBehaviour
     [SerializeField] ParticleSystem tracer;
     [SerializeField] ParticleSystem muzzle;
     [SerializeField] GameObject FlashPoint;
-    [SerializeField] GameObject Gun; 
+    [SerializeField] GameObject Gun;
     [SerializeField] GameObject dice; //ISAAC ADDITION - temp dice variable, will eventually have a proper way to store dice prefabs, with potential for multiple dice, probably an array
+    [SerializeField] GameObject diceGold;
     [SerializeField] Camera mainCam;
     [SerializeField] LayerMask groundLayer;
 
@@ -72,7 +73,7 @@ public class Shooting : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position, 1000, groundLayer); //ISAAC ADDITION - added raycast to mouse position, reverted to old 3d camera overlay to get the aim correct, so the 2d camera is the main camera now, the distance needs to be a big number otherwise an error is thrown if you click outside distance
             Debug.Log(hit.collider);
             if (hit.collider.CompareTag("Enemy")) { //ISAAC ADDITION - if ray hits an enemy it hits
-                hit.collider.GetComponent<GeneralAI>().Hit(dice, knockback);
+                hit.collider.GetComponent<GeneralAI>().Hit(dice, diceGold, knockback);
             }
 
             Instantiate(tracer, FlashPoint.transform.position, FlashPoint.transform.rotation);

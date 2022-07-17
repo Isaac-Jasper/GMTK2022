@@ -30,6 +30,9 @@ public class RoundLogic : MonoBehaviour
         if (roundCount > 2) waveCount = (int)Mathf.Log(roundCount) * 6; //equation calculates how many waves there will be this round
         else waveCount = roundCount;
 
+        GUI.gui.SetRound(roundCount);
+        GUI.gui.SetWave(currentWave, waveCount);
+
         StartCoroutine(StartWave());
     }
     private IEnumerator StartWave() {
@@ -37,11 +40,14 @@ public class RoundLogic : MonoBehaviour
         currentWave++;
 
         if (currentWave > waveCount) { //on last wave ends waves
-            currentWave = waveCount; //sets waves to last wave for visual effect
             //end round
             Debug.Log("round end");
+            yield return new WaitForSeconds(waveDelay);
+            GameController.GC.TransitionStart();
             yield break;
         }
+        GUI.gui.SetWave(currentWave, waveCount);
+
         int lowerRange = (int)(Mathf.Sqrt(roundCount) + 5 * Mathf.Log(currentWave) + 2); //equation to calculate lower range of enemies
         int upperRange = (int)(3 * Mathf.Sqrt(roundCount) + 7 * Mathf.Log(currentWave) + 2); //equation to calculate higher range of enemies
         waveEnemies = Random.Range(lowerRange, upperRange);
