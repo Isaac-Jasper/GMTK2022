@@ -158,8 +158,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6444589004242710004}
   - component: {fileID: 6444589004242710007}
-  - component: {fileID: 6444589004242710008}
   - component: {fileID: 1341761498262042790}
+  - component: {fileID: 6444589004242710008}
   - component: {fileID: 6444589004242710006}
   - component: {fileID: 6444589004242710009}
   m_Layer: 0
@@ -237,6 +237,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1341761498262042790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444589004242710011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548df2a3a81d6284dafe520c70934532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 6444589004132777908}
+  tracer: {fileID: 8051400519273969910, guid: 24c1d7ab04128d64da6e161e3294e613, type: 3}
+  muzzle: {fileID: 4714528488876380929, guid: 4aa0dc4d66dfac343a262fadb8903579, type: 3}
+  FlashPoint: {fileID: 6444589003470852566}
+  Gun: {fileID: 6444589003517895596}
+  dice: {fileID: 0}
+  mainCam: {fileID: 0}
+  Environment:
+    serializedVersion: 2
+    m_Bits: 0
+  firerate: 100
+  knockback: 0
 --- !u!114 &6444589004242710008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,31 +281,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &1341761498262042790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444589004242710011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548df2a3a81d6284dafe520c70934532, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: {fileID: 6444589004132777908}
-  tracer: {fileID: 8051400519273969910, guid: 24c1d7ab04128d64da6e161e3294e613, type: 3}
-  muzzle: {fileID: 4714528488876380929, guid: 4aa0dc4d66dfac343a262fadb8903579, type: 3}
-  FlashPoint: {fileID: 6444589003470852566}
-  Gun: {fileID: 6444589003517895596}
-  dice: {fileID: 9157565673016419434, guid: cb9b8ab784c94b04290eb1a281e89751, type: 3}
-  diceGold: {fileID: 9157565673016419434, guid: 0017dc8eff88aa14883c47de05c776a7, type: 3}
-  mainCam: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  firerate: 100
-  knockback: 0
 --- !u!61 &6444589004242710006
 BoxCollider2D:
   m_ObjectHideFlags: 0
